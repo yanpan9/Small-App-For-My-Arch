@@ -1,0 +1,34 @@
+#! /bin/bash
+# randomly choose a file
+# Yuwen Dai, 13 September, 2012
+# from http://m.blog.csdn.net/article/details?id=8207117
+cd ~/Pictures
+# Add file types here
+FILE_TYPE="*jpg"
+
+# Get the total number of files
+TOTAL=`ls -l $FILE_TYPE|wc -l`
+TOTAL=$((TOTAL-1))
+
+# Get a random number
+R=$((${RANDOM}*${TOTAL}/32767))
+
+# create a temp file
+FILE_LIST=`mktemp /tmp/rp_XXXX` || (echo "Create tmp file failed"; exit 1)
+
+# attach a number to each file
+for i in ${FILE_TYPE};do
+	    echo ${TOTAL} ${i} >> ${FILE_LIST}
+	        TOTAL=$((TOTAL-1))
+	done
+
+	# Get the file name
+	FILE=`grep "^${R} " ${FILE_LIST}|sed -e "s/^${R} //"`
+
+	# delete the temp file
+	rm ${FILE_LIST}
+
+	echo starting play file... 
+	echo ${FILE}
+	# we got file, use it whatever you want
+exec feh --bg-scale "${FILE}"
