@@ -1,0 +1,17 @@
+#!/bin/bash
+#from http://kksnote.logdown.com/posts/183851-linuxi3wm-volume-adjust
+if
+[ $1 == "raise" ]; then
+        amixer -q sset Master 5%+
+
+        Msg="Master Vol:"
+        Vol=$(amixer get Master | egrep -o "[0-9]+%")
+        notify-send -t 1 "$Msg $Vol"
+                                                                                                                                                                                           
+elif [ $1 == "down" ]; then
+        amixer -q sset Master 5%-
+
+        Msg="Master Vol:"      
+        Vol=$(amixer get Master | egrep -o "[0-9]+%")
+        notify-send -t 1 "$Msg $Vol"    
+fi
