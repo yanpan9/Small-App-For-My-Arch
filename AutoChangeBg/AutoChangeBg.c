@@ -42,6 +42,10 @@ int main(int argc, char** argv)
             return 0;
         }
     }
+    else
+    {
+        sleeptime = 600;
+    }
     DIR *dir; struct dirent *ptr;
     dir = opendir(argv[1]);
     vector<char*> filename;
