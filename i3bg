@@ -2,7 +2,7 @@
 # randomly choose a file
 # Yuwen Dai, 13 September, 2012
 # from http://m.blog.csdn.net/article/details?id=8207117
-cd ~/Pictures
+cd ~/Pictures/Wallpapers
 # Add file types here
 FILE_TYPE="*jpg"
 
