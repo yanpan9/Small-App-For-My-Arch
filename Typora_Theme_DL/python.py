@@ -45,14 +45,18 @@ class TyporaThemeDownloader:
 			site = self.get_download_site(page)
 			if site != None:
 				theme_path.append(site)
-		for link in theme_path:
-			filename = link.split("?")[0].split("/")[-1]
-			if filename == "master.zip":
-				fileformat = ".zip"
-				filename = link.split("?")[0].split("/")[-3] + fileformat
-			print(filename)
-			request.urlretrieve(url = link, filename = filename,
-			reporthook = DownloadReport)
+		with open("url.data", "w") as file:
+			for link in theme_path:
+				file.write(link+"\n")
+				'''
+				filename = link.split("?")[0].split("/")[-1]
+				if filename == "master.zip":
+					fileformat = ".zip"
+					filename = link.split("?")[0].split("/")[-3] + fileformat
+					request.urlretrieve(url = link, filename = filename,
+					reporthook = DownloadReport)
+				file.write("out="+filename+"\n")
+				'''
 		
 			
 instance = TyporaThemeDownloader()
